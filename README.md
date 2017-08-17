@@ -15,7 +15,7 @@ You can use the following commands on a bash shell to get the program running.
 yarn install
 # start the application must have consul running
 export CONSUL_PORT=locahost
-export CONSUL_PORT=8500
+export CONSUL_HOST=8500
 npm start 
 # or try docker-compose.yaml with the following
 docker-compose up
