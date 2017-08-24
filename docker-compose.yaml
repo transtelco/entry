@@ -1,13 +1,25 @@
-version: '3'
+version: '2'
 services:
   # service discovery
   consul:
     image: consul
   # several APIs
+  api-ruby:
+    image: victor755555/api-ruby:latest
+    # for debuggin purposes 
+    ports:
+      - "4455:4567"
+    command: "ruby languages.rb"
+    environment:
+      - CONSUL_HOST=consul
+      - CONSUL_PORT=8500
+    depends_on:
+      - consul
   api-python:
     image: victor755555/api-python:latest
-    depends_on:
-      - consul 
+    # for debuggin purposes 
+    ports:
+      - "4456:5000"
     environment:
       - CONSUL_HOST=consul
       - CONSUL_PORT=8500
@@ -22,6 +34,6 @@ services:
       - CONSUL_HOST=consul
       - CONSUL_PORT=8500
     ports:
-      - "8080:8080"
+      - "8082:8080"
     depends_on:
       - consul 
